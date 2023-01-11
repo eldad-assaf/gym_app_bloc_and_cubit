@@ -8,17 +8,21 @@ class Workout {
     required this.title,
     required this.exercises,
   });
-//min 25:00 , 26:50 
 
   factory Workout.fromJson(Map<String, dynamic> json) {
     List<Exercise> exercises = [];
     int index = 0;
     int startTime = 0;
 
-    //////min 25:00 in the video
     for (var ex in (json['exercises'] as Iterable)) {
-    //min 26:50 
       exercises.add(Exercise.fromJson(ex, index, startTime));
+      index++;
+      //+=(Add and Assignment)
+      //It adds the right operand to the left operand and assigns the result to the left operand.
+      //Ex: C += A is equivalent to C = C + A
+      startTime += exercises.last.prelude! + exercises.last.startTime!;
     }
+
+    return Workout(title: json['title'] as String?, exercises: exercises);
   }
 }
