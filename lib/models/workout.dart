@@ -25,4 +25,7 @@ class Workout {
 
     return Workout(title: json['title'] as String?, exercises: exercises);
   }
+  Map<String, dynamic> toJson() => {'title': title, 'exercises': exercises};
+  
 }
+

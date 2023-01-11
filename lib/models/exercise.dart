@@ -1,3 +1,7 @@
+// ignore_for_file: non_constant_identifier_names
+
+import 'package:flutter_bloc_app_complete/models/workout.dart';
+
 class Exercise {
   Exercise({
     required this.title,
@@ -28,3 +32,4 @@ class Exercise {
         "duration": duration,
       };
 }
+
