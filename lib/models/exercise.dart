@@ -1,8 +1,8 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter_bloc_app_complete/models/workout.dart';
+import 'package:equatable/equatable.dart';
 
-class Exercise {
+class Exercise extends Equatable {
   Exercise({
     required this.title,
     required this.prelude,
@@ -31,5 +31,10 @@ class Exercise {
         "prelude": prelude,
         "duration": duration,
       };
-}
 
+  @override
+  List<Object?> get props => [title, prelude, duration, index, startTime];
+
+  @override
+  bool get stringify => true;
+}
