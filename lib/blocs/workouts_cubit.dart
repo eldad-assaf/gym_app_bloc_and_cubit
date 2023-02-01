@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +25,7 @@ class WorkoutsCubit extends Cubit<List<Workout>> {
   }
 
   saveWorkout(Workout workout, int index) async {
-    Workout newWorkout = Workout(title: workout.title, exercises: []);
+    Workout newWorkout = Workout(title: workout.title, exercises: const []);
     int exIndex = 0;
     int startTime = 0;
 
