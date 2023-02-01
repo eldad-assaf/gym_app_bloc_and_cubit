@@ -25,7 +25,7 @@ class WorkoutsCubit extends Cubit<List<Workout>> {
   }
 
   saveWorkout(Workout workout, int index) async {
-    Workout newWorkout = Workout(title: workout.title, exercises: const []);
+    Workout newWorkout = Workout(title: workout.title, exercises: []);
     int exIndex = 0;
     int startTime = 0;
 
