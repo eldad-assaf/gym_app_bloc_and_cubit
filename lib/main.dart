@@ -1,5 +1,4 @@
 //https://www.youtube.com/watch?v=1ENQHfNB9gM&t=34s
-//https://www.dbestech.com/tutorials/flutter-bloc-app-complete-tutorial-advanced
 //https://app.quicktype.io
 
 import 'package:flutter/material.dart';
@@ -8,6 +7,7 @@ import 'package:flutter_bloc_app_complete/blocs/workout_cubit.dart';
 import 'package:flutter_bloc_app_complete/blocs/workouts_cubit.dart';
 import 'package:flutter_bloc_app_complete/screens/edit_workout_screen.dart';
 import 'package:flutter_bloc_app_complete/screens/home_page.dart';
+import 'package:flutter_bloc_app_complete/screens/workout_in_progress.dart';
 import 'package:flutter_bloc_app_complete/states/workout_states.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
@@ -61,9 +61,7 @@ class WorkoutTime extends StatelessWidget {
             } else if (state is WorkoutEditing) {
               return const EditWorkoutScreen();
             } else if (state is WorkoutInProgress) {
-              return Container(
-                color: Colors.red,
-              );
+              return const WorkoutProgress();
             }
             return Container();
           },

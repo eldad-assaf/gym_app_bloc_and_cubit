@@ -16,17 +16,31 @@ class WorkoutCubit extends Cubit<WorkoutState> {
   editExercise(int? exIndex) => emit(
       WorkoutEditing(state.workout, (state as WorkoutEditing).index, exIndex));
 
+  // onTick(Timer timer) {
+  //   if (state is WorkoutInProgress) {
+  //     WorkoutInProgress wip = state as WorkoutInProgress;
+  //     if (wip.elapsed! < wip.workout!.getTotal()) {
+  //       emit(WorkoutInProgress(wip.workout, wip.elapsed! + 1));
+  //       print('elapsed time is ${wip.elapsed}...');
+  //     } else {
+  //       timer.cancel();
+  //       Wakelock.disable();
+  //       emit(const WorkoutInitial());
+  //     }
+  //   }
+  // }
   onTick(Timer timer) {
-    if (state is WorkoutInProgress) {
-      WorkoutInProgress wip = state as WorkoutInProgress;
-      if (wip.elapsed! < wip.workout!.getTotal()) {
-        emit(WorkoutInProgress(wip.workout, wip.elapsed! + 1));
-      } else {
-        timer.cancel();
-        Wakelock.disable();
-        emit(const WorkoutInitial());
-      }
+    if (state is! WorkoutInProgress) return;
+
+    WorkoutInProgress wip = state as WorkoutInProgress;
+    if (wip.elapsed! >= wip.workout!.getTotal()) {
+      timer.cancel();
+      Wakelock.disable();
+      emit(const WorkoutInitial());
+      return;
     }
+
+    emit(WorkoutInProgress(wip.workout, wip.elapsed! + 1));
   }
 
 //the index is for starting a workout in a specific exercide (not the first excersice in the list)
@@ -40,5 +54,10 @@ class WorkoutCubit extends Cubit<WorkoutState> {
     }
   }
 
-  goHome() => emit(const WorkoutInitial());
+  goHome() {
+    if (_timer != null) {
+      _timer!.cancel();
+    }
+    emit(const WorkoutInitial());
+  }
 }
