@@ -37,6 +37,18 @@ class Workout extends Equatable {
   Exercise getCurrentExercise(int? elapsed) =>
       exercises.lastWhere((element) => element.startTime! <= elapsed!);
 
+  Exercise? getNextExercise(Workout workout, int? elapsed) {
+    final currentExercise = workout.getCurrentExercise(elapsed);
+    final currentExerciseIndex = workout.exercises.indexOf(currentExercise);
+    final nextExerciseIndex = currentExerciseIndex + 1;
+
+    if (nextExerciseIndex >= workout.exercises.length) {
+      return null; // No more exercises in the workout
+    }
+
+    return workout.exercises[nextExerciseIndex];
+  }
+
   @override
   List<Object?> get props => [title, exercises];
 

@@ -4,6 +4,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_app_complete/blocs/workout_cubit.dart';
+import 'package:flutter_bloc_app_complete/components/exerciseDetails.dart';
 import 'package:flutter_bloc_app_complete/helpers.dart';
 import 'package:flutter_bloc_app_complete/models/exercise.dart';
 import 'package:flutter_bloc_app_complete/states/workout_states.dart';
@@ -17,15 +18,18 @@ class WorkoutProgress extends StatelessWidget {
   Widget build(BuildContext context) {
     Map<String, dynamic> _getStats(Workout workout, int workoutElapsed) {
       int workoutTotal = workout.getTotal();
-      Exercise exercise = workout.getCurrentExercise(workoutElapsed);
-      int exerciseElapsed = workoutElapsed - exercise.startTime!;
+      Exercise currentExercise = workout.getCurrentExercise(workoutElapsed);
+      Exercise? nextExercise = workout.getNextExercise(workout, workoutElapsed);
+
+      int exerciseElapsed = workoutElapsed - currentExercise.startTime!;
       int exerciseRemaining =
-          exercise.prelude! - exerciseElapsed; //check 4:52:00 4:55:55
-      bool isPrelude = exerciseElapsed < exercise.prelude!;
-      int exerciseTotal = isPrelude ? exercise.prelude! : exercise.duration!;
+          currentExercise.prelude! - exerciseElapsed; //check 4:52:00 4:55:55
+      bool isPrelude = exerciseElapsed < currentExercise.prelude!;
+      int exerciseTotal =
+          isPrelude ? currentExercise.prelude! : currentExercise.duration!;
       if (!isPrelude) {
-        exerciseElapsed -= exercise.prelude!;
-        exerciseRemaining += exercise.duration!;
+        exerciseElapsed -= currentExercise.prelude!;
+        exerciseRemaining += currentExercise.duration!;
       }
 
       return {
@@ -33,8 +37,10 @@ class WorkoutProgress extends StatelessWidget {
         'workoutTotal': workoutTotal,
         'workoutProgress': workoutElapsed / workoutTotal,
         'workoutElapsed': workoutElapsed,
+        'currentExerciseTitle': currentExercise.title,
+        'nextExerciseTitle': nextExercise?.title,
         'totalExercise': workout.exercises.length,
-        'currentExerciseIndex': exercise.index!.toDouble(),
+        'currentExerciseIndex': currentExercise.index!.toDouble(),
         'workoutRemaining': workoutTotal - workoutElapsed,
         'exerciseRemaining': exerciseRemaining,
         'isPrelude': isPrelude,
@@ -63,9 +69,11 @@ class WorkoutProgress extends StatelessWidget {
                       Text(
                         formatTime(stats['workoutElapsed'], true),
                       ),
-                      DotsIndicator(
-                        dotsCount: stats['totalExercise'],
-                        position: stats['currentExerciseIndex'],
+                      Expanded(
+                        child: DotsIndicator(
+                          dotsCount: stats['totalExercise'],
+                          position: stats['currentExerciseIndex'],
+                        ),
                       ),
                       Text(
                         formatTime(stats['workoutRemaining'], true),
@@ -74,6 +82,11 @@ class WorkoutProgress extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
+                ExerciseDetails(
+                  currentExerciseTitle: stats['currentExerciseTitle'],
+                  nextExerciseTitle: stats['nextExerciseTitle'],
+                  isPrelude: stats['isPrelude'],
+                ),
                 InkWell(
                     onTap: () {
                       if (state is WorkoutInProgress) {
