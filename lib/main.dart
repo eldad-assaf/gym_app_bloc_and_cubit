@@ -1,6 +1,3 @@
-//https://www.youtube.com/watch?v=1ENQHfNB9gM&t=34s
-//https://app.quicktype.io
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_app_complete/blocs/workout_cubit.dart';
