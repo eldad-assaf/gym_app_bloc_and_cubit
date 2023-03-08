@@ -1,16 +1,9 @@
-# flutter_bloc_app_complete
+Gym-App
 
-A new Flutter project.
+Gym-App is a Flutter app that showcases the developer's abilities with state management using the BLoC pattern and Hydrated BLoC. The app allows users to create custom workouts by adding and editing exercises, as well as starting preloaded workouts.
 
-## Getting Started
+The app comes with two preloaded workouts, each containing a list of exercises. When a workout is started, the app displays the current exercise and the next exercise, as well as a timer that shows the prelude time and the name of the next exercise. Users can also edit workouts by changing the time and prelude time of each exercise.
 
-This project is a starting point for a Flutter application.
+Gym-App's use of Hydrated BLoC allows users to save their workouts and progress between app sessions. While the UI of the app is basic, the focus of the development was on state management and providing a seamless user experience.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Try out Gym-App to see the power of Flutter, BLoC state management, and Hydrated BLoC in action!
