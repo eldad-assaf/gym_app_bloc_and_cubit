@@ -21,7 +21,7 @@ class Workout extends Equatable {
       //+=(Add and Assignment)
       //It adds the right operand to the left operand and assigns the result to the left operand.
       //Ex: C += A is equivalent to C = C + A
-      startTime += exercises.last.prelude! + exercises.last.startTime!;
+      startTime += exercises.last.prelude! + exercises.last.duration!;
     }
 
     return Workout(title: json['title'] as String?, exercises: exercises);

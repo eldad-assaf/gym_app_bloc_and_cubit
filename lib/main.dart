@@ -60,7 +60,7 @@ class WorkoutTime extends StatelessWidget {
               return const HomePage();
             } else if (state is WorkoutEditing) {
               return const EditWorkoutScreen();
-            } else if (state is WorkoutInProgress) {
+            } else if (state is WorkoutInProgress || state is WorkoutPaused) {
               return const WorkoutProgress();
             }
             return Container();

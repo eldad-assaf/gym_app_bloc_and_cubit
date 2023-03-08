@@ -16,37 +16,28 @@ class WorkoutCubit extends Cubit<WorkoutState> {
   editExercise(int? exIndex) => emit(
       WorkoutEditing(state.workout, (state as WorkoutEditing).index, exIndex));
 
-  // onTick(Timer timer) {
-  //   if (state is WorkoutInProgress) {
-  //     WorkoutInProgress wip = state as WorkoutInProgress;
-  //     if (wip.elapsed! < wip.workout!.getTotal()) {
-  //       emit(WorkoutInProgress(wip.workout, wip.elapsed! + 1));
-  //       print('elapsed time is ${wip.elapsed}...');
-  //     } else {
-  //       timer.cancel();
-  //       Wakelock.disable();
-  //       emit(const WorkoutInitial());
-  //     }
-  //   }
-  // }
+  pauseWorkout() => emit(WorkoutPaused(state.workout, state.elapsed));
+  resumeWorkout() => emit(WorkoutInProgress(state.workout, state.elapsed));
+
   onTick(Timer timer) {
-    if (state is! WorkoutInProgress) return;
-
-    WorkoutInProgress wip = state as WorkoutInProgress;
-    if (wip.elapsed! >= wip.workout!.getTotal()) {
-      timer.cancel();
-      Wakelock.disable();
-      emit(const WorkoutInitial());
-      return;
+    if (state is WorkoutInProgress) {
+      WorkoutInProgress wip = state as WorkoutInProgress;
+      if (wip.elapsed! < wip.workout!.getTotal()) {
+        emit(WorkoutInProgress(wip.workout, wip.elapsed! + 1));
+      } else {
+        timer.cancel();
+        Wakelock.disable();
+        emit(const WorkoutInitial());
+      }
     }
-
-    emit(WorkoutInProgress(wip.workout, wip.elapsed! + 1));
   }
 
 //the index is for starting a workout in a specific exercide (not the first excersice in the list)
   startWorkout(Workout workout, [int? index]) async {
     Wakelock.enable();
-
+    if (_timer != null) {
+      _timer!.cancel();
+    }
     if (index != null) {
     } else {
       emit(WorkoutInProgress(workout, 0));
@@ -56,7 +47,9 @@ class WorkoutCubit extends Cubit<WorkoutState> {
 
   goHome() {
     if (_timer != null) {
+      print('timer stopped');
       _timer!.cancel();
+      _timer = null;
     }
     emit(const WorkoutInitial());
   }

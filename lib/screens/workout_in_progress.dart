@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_app_complete/blocs/workout_cubit.dart';
@@ -18,7 +19,8 @@ class WorkoutProgress extends StatelessWidget {
       int workoutTotal = workout.getTotal();
       Exercise exercise = workout.getCurrentExercise(workoutElapsed);
       int exerciseElapsed = workoutElapsed - exercise.startTime!;
-      int exerciseRemaining = exercise.prelude! - exerciseElapsed;
+      int exerciseRemaining =
+          exercise.prelude! - exerciseElapsed; //check 4:52:00 4:55:55
       bool isPrelude = exerciseElapsed < exercise.prelude!;
       int exerciseTotal = isPrelude ? exercise.prelude! : exercise.duration!;
       if (!isPrelude) {
@@ -28,18 +30,22 @@ class WorkoutProgress extends StatelessWidget {
 
       return {
         'workoutTitle': workout.title,
+        'workoutTotal': workoutTotal,
         'workoutProgress': workoutElapsed / workoutTotal,
         'workoutElapsed': workoutElapsed,
         'totalExercise': workout.exercises.length,
         'currentExerciseIndex': exercise.index!.toDouble(),
         'workoutRemaining': workoutTotal - workoutElapsed,
         'exerciseRemaining': exerciseRemaining,
+        'isPrelude': isPrelude,
+        'exerciseProgress': exerciseElapsed / exerciseTotal
       };
     }
 
     return BlocConsumer<WorkoutCubit, WorkoutState>(
       builder: (context, state) {
         final stats = _getStats(state.workout!, state.elapsed!);
+
         return Scaffold(
           body: Container(
             padding: const EdgeInsets.all(32),
@@ -57,13 +63,54 @@ class WorkoutProgress extends StatelessWidget {
                       Text(
                         formatTime(stats['workoutElapsed'], true),
                       ),
-                      Spacer(),
+                      DotsIndicator(
+                        dotsCount: stats['totalExercise'],
+                        position: stats['currentExerciseIndex'],
+                      ),
                       Text(
                         formatTime(stats['workoutRemaining'], true),
                       ),
                     ],
                   ),
-                )
+                ),
+                const Spacer(),
+                InkWell(
+                    onTap: () {
+                      if (state is WorkoutInProgress) {
+                        BlocProvider.of<WorkoutCubit>(context).pauseWorkout();
+                      } else if (state is WorkoutPaused) {
+                        BlocProvider.of<WorkoutCubit>(context).resumeWorkout();
+                      }
+                    },
+                    child: Stack(
+                      alignment: const Alignment(0, 0),
+                      children: [
+                        Center(
+                          child: SizedBox(
+                            height: 220,
+                            width: 220,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                  stats['isPrelude']
+                                      ? Colors.red
+                                      : Colors.blue),
+                              strokeWidth: 25,
+                              value: stats['exerciseProgress'],
+                            ),
+                          ),
+                        ),
+                        Center(
+                          child: SizedBox(
+                            height: 300,
+                            width: 300,
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 20),
+                              child: Image.asset('stopwatch.png'),
+                            ),
+                          ),
+                        )
+                      ],
+                    ))
               ],
             ),
           ),
