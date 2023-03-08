@@ -7,4 +7,5 @@ The app comes with two preloaded workouts, each containing a list of exercises. 
 Gym-App's use of Hydrated BLoC allows users to save their workouts and progress between app sessions. While the UI of the app is basic, the focus of the development was on state management and providing a seamless user experience.
 
 Try out Gym-App to see the power of Flutter, BLoC state management, and Hydrated BLoC in action!
-![Screenshot of Gym-App](lib/Simulator Screen Shot - 13 - 2023-03-08 at 17.30.27.png)
+![Screenshot of Gym-App](Simulator Screen Shot - 13 - 2023-03-08 at 17.30.27.png)
+
