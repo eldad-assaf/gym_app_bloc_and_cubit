@@ -78,7 +78,7 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
                 child: NumberPicker(
                     itemHeight: 30,
                     value: widget.workout!.exercises[widget.exIndex!].prelude!,
-                    minValue: 0,
+                    minValue: 5,
                     maxValue: 3599,
                     textMapper: (strVal) =>
                         formatTime(int.parse(strVal), false),
@@ -151,7 +151,7 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
                 child: NumberPicker(
                     itemHeight: 30,
                     value: widget.workout!.exercises[widget.exIndex!].duration!,
-                    minValue: 1,
+                    minValue: 5,
                     maxValue: 3599,
                     textMapper: (strVal) =>
                         formatTime(int.parse(strVal), false),
