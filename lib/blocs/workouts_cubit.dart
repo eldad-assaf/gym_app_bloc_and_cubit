@@ -25,7 +25,7 @@ class WorkoutsCubit extends HydratedCubit<List<Workout>> {
   }
 
   saveWorkout(Workout workout, int index) async {
-    Workout newWorkout = Workout(title: workout.title, exercises: []);
+    Workout newWorkout = Workout(title: workout.title, exercises: const []);
     int exIndex = 0;
     int startTime = 0;
 
@@ -58,15 +58,11 @@ class WorkoutsCubit extends HydratedCubit<List<Workout>> {
 
   @override
   Map<String, dynamic>? toJson(List<Workout> state) {
-    if (state is List<Workout>) {
-      var json = {'workouts': []};
+    var json = {'workouts': []};
 
-      for (var workout in state) {
-        json['workouts']!.add(workout.toJson());
-      }
-      return json;
-    } else {
-      return null;
+    for (var workout in state) {
+      json['workouts']!.add(workout.toJson());
     }
+    return json;
   }
 }
