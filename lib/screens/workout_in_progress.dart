@@ -118,7 +118,7 @@ class WorkoutProgress extends StatelessWidget {
                             width: 300,
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 20),
-                              child: Image.asset('stopwatch.png'),
+                              child: Image.asset('assets/stopwatch.png'),
                             ),
                           ),
                         )

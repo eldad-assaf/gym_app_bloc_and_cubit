@@ -9,15 +9,19 @@ import 'package:flutter_bloc_app_complete/states/workout_states.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
+// Future<void> main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   HydratedBloc.storage = await HydratedStorage.build(storageDirectory: ...);
+//   runApp(App());
+// }
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final storage = await HydratedStorage.build(
+  HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: await getApplicationDocumentsDirectory(),
   );
-  HydratedBlocOverrides.runZoned(
-    () => runApp(const WorkoutTime()),
-    storage: storage,
-  );
+
+  runApp(const WorkoutTime());
 }
 
 class WorkoutTime extends StatelessWidget {
@@ -27,10 +31,11 @@ class WorkoutTime extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'My Workouts',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Colors.blue,
         textTheme: const TextTheme(
-          bodyText2: TextStyle(
+          bodyMedium: TextStyle(
             color: Color.fromARGB(155, 66, 74, 96),
           ),
         ),
