@@ -1,11 +1,11 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_app_complete/blocs/workout_cubit.dart';
-import 'package:flutter_bloc_app_complete/components/exerciseDetails.dart';
-import 'package:flutter_bloc_app_complete/helpers.dart';
-import 'package:flutter_bloc_app_complete/models/exercise.dart';
-import 'package:flutter_bloc_app_complete/states/workout_states.dart';
+import 'package:gymapp_flutter/blocs/workout_cubit.dart';
+import 'package:gymapp_flutter/components/exerciseDetails.dart';
+import 'package:gymapp_flutter/helpers.dart';
+import 'package:gymapp_flutter/models/exercise.dart';
+import 'package:gymapp_flutter/states/workout_states.dart';
 
 import '../models/workout.dart';
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_app_complete/blocs/workout_cubit.dart';
-import 'package:flutter_bloc_app_complete/blocs/workouts_cubit.dart';
-import 'package:flutter_bloc_app_complete/helpers.dart';
-import 'package:flutter_bloc_app_complete/models/workout.dart';
+import 'package:gymapp_flutter/blocs/workout_cubit.dart';
+import 'package:gymapp_flutter/blocs/workouts_cubit.dart';
+import 'package:gymapp_flutter/helpers.dart';
+import 'package:gymapp_flutter/models/workout.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

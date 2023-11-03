@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_app_complete/models/exercise.dart';
+import 'package:gymapp_flutter/models/exercise.dart';
 
 class Workout extends Equatable {
   final String? title;

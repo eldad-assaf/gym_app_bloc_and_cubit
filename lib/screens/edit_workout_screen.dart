@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_app_complete/blocs/workout_cubit.dart';
-import 'package:flutter_bloc_app_complete/blocs/workouts_cubit.dart';
-import 'package:flutter_bloc_app_complete/helpers.dart';
-import 'package:flutter_bloc_app_complete/models/exercise.dart';
-import 'package:flutter_bloc_app_complete/models/workout.dart';
-import 'package:flutter_bloc_app_complete/screens/edit_exercise_screen.dart';
-import 'package:flutter_bloc_app_complete/states/workout_states.dart';
+import 'package:gymapp_flutter/blocs/workout_cubit.dart';
+import 'package:gymapp_flutter/blocs/workouts_cubit.dart';
+import 'package:gymapp_flutter/helpers.dart';
+import 'package:gymapp_flutter/models/exercise.dart';
+import 'package:gymapp_flutter/models/workout.dart';
+import 'package:gymapp_flutter/screens/edit_exercise_screen.dart';
+import 'package:gymapp_flutter/states/workout_states.dart';
 
 class EditWorkoutScreen extends StatelessWidget {
   const EditWorkoutScreen({super.key});

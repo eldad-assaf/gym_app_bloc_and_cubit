@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc_app_complete/models/workout.dart';
+import 'package:gymapp_flutter/models/workout.dart';
 
 abstract class WorkoutState extends Equatable {
   final Workout? workout;

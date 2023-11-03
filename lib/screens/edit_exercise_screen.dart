@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_app_complete/helpers.dart';
-import 'package:flutter_bloc_app_complete/models/workout.dart';
+import 'package:gymapp_flutter/helpers.dart';
+import 'package:gymapp_flutter/models/workout.dart';
 import 'package:numberpicker/numberpicker.dart';
 
 import '../blocs/workouts_cubit.dart';
@@ -64,9 +64,9 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
                                           .copyWith(
                                               prelude:
                                                   int.parse(controller.text));
-                                  BlocProvider.of<WorkoutsCubit>(context)
-                                      .saveWorkout(
-                                          widget.workout!, widget.index);
+                                  // BlocProvider.of<WorkoutsCubit>(context)
+                                  //     .saveWorkout(
+                                  //         widget.workout!, widget.index);
                                 });
                               }
                             },
@@ -87,8 +87,8 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
                         widget.workout!.exercises[widget.exIndex!] = widget
                             .workout!.exercises[widget.exIndex!]
                             .copyWith(prelude: value);
-                        BlocProvider.of<WorkoutsCubit>(context)
-                            .saveWorkout(widget.workout!, widget.index);
+                        // BlocProvider.of<WorkoutsCubit>(context)
+                        //     .saveWorkout(widget.workout!, widget.index);
                       });
                     }),
               ),
@@ -102,9 +102,9 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
                     widget.workout!.exercises[widget.exIndex!] = widget
                         .workout!.exercises[widget.exIndex!]
                         .copyWith(title: value);
-
-                    BlocProvider.of<WorkoutsCubit>(context)
-                        .saveWorkout(widget.workout!, widget.index);
+                    print('eldad2');
+                    // BlocProvider.of<WorkoutsCubit>(context)
+                    //     .saveWorkout(widget.workout!, widget.index);
                   }),
                 )),
             Expanded(
@@ -137,9 +137,10 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
                                           .copyWith(
                                               duration:
                                                   int.parse(controller.text));
-                                  BlocProvider.of<WorkoutsCubit>(context)
-                                      .saveWorkout(
-                                          widget.workout!, widget.index);
+
+                                  // BlocProvider.of<WorkoutsCubit>(context)
+                                  //     .saveWorkout(
+                                  //         widget.workout!, widget.index);
                                 });
                               }
                             },
@@ -160,8 +161,9 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
                         widget.workout!.exercises[widget.exIndex!] = widget
                             .workout!.exercises[widget.exIndex!]
                             .copyWith(duration: value);
-                        BlocProvider.of<WorkoutsCubit>(context)
-                            .saveWorkout(widget.workout!, widget.index);
+
+                        // BlocProvider.of<WorkoutsCubit>(context)
+                        //     .saveWorkout(widget.workout!, widget.index);
                       });
                     }),
               ),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_app_complete/blocs/workout_cubit.dart';
-import 'package:flutter_bloc_app_complete/blocs/workouts_cubit.dart';
-import 'package:flutter_bloc_app_complete/screens/edit_workout_screen.dart';
-import 'package:flutter_bloc_app_complete/screens/home_page.dart';
-import 'package:flutter_bloc_app_complete/screens/workout_in_progress.dart';
-import 'package:flutter_bloc_app_complete/states/workout_states.dart';
+import 'package:gymapp_flutter/blocs/workout_cubit.dart';
+import 'package:gymapp_flutter/blocs/workouts_cubit.dart';
+import 'package:gymapp_flutter/screens/edit_workout_screen.dart';
+import 'package:gymapp_flutter/screens/home_page.dart';
+import 'package:gymapp_flutter/screens/workout_in_progress.dart';
+import 'package:gymapp_flutter/states/workout_states.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 

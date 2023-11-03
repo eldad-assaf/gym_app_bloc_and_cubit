@@ -2,8 +2,8 @@
 
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc_app_complete/models/exercise.dart';
-import 'package:flutter_bloc_app_complete/models/workout.dart';
+import 'package:gymapp_flutter/models/exercise.dart';
+import 'package:gymapp_flutter/models/workout.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 class WorkoutsCubit extends HydratedCubit<List<Workout>> {
@@ -58,11 +58,15 @@ class WorkoutsCubit extends HydratedCubit<List<Workout>> {
 
   @override
   Map<String, dynamic>? toJson(List<Workout> state) {
-    var json = {'workouts': []};
+    if (state.isNotEmpty) {
+      var json = {'workouts': []};
 
-    for (var workout in state) {
-      json['workouts']!.add(workout.toJson());
+      for (var workout in state) {
+        json['workouts']!.add(workout.toJson());
+      }
+      return json;
+    } else {
+      return null;
     }
-    return json;
   }
 }

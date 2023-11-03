@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_app_complete/models/workout.dart';
+import 'package:gymapp_flutter/models/workout.dart';
 import 'package:wakelock/wakelock.dart';
 import '../states/workout_states.dart';
 
